@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function KYLogo8({ width = 640, height = 160, className = "" }) {
+export default function KYLogo8({ width = 100, height = 5, className = "" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ export default function KYLogo8({ width = 640, height = 160, className = "" }) {
       </defs>
 
       <g transform="translate(28,28)">
-        <rect x="0" y="0" width="100" height="100" rx="18" fill="#071021" />
+        <rect x="0" y="0" width="120" height="120" rx="18" fill="#071021" />
         <path
           d="M24 36 L46 58 L24 80"
           stroke="#00ff9d"
@@ -30,10 +30,10 @@ export default function KYLogo8({ width = 640, height = 160, className = "" }) {
       </g>
 
       <text
-        x="150"
-        y="94"
+        x="160"
+        y="130"
         fontFamily="Inter, Poppins, sans-serif"
-        fontSize="52"
+        fontSize="122"
         fontWeight="800"
         fill="#071021"
       >

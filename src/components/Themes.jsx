@@ -1,10 +1,8 @@
-// src/components/Themes.jsx
 import { useState, useEffect } from "react";
 
 export default function Themes() {
   const [isDark, setIsDark] = useState(false);
 
-  // LocalStorage orqali theme ni saqlash
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {

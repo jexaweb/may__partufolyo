@@ -26,8 +26,9 @@ const translations = {
     about: "About",
     portfolio: "Portfolio",
     contact: "Contact",
-    welcome: "Welcome to KY.dev!",
-    description: "This site is an example of a multilingual React project.",
+    welcome: "Hello",
+    description: "I'M KAMOLIDDIN      YURSUNOV",
+    tile: "I’m a skilled Front-End Developer who creates modern, responsive, and high-quality websites using the latest web technologies.",
   },
 };
 

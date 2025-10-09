@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import translations from "../hooks/translations";
 import { useLanguage } from "./LanguageContext";
 import Themes from "./Themes";
+import MobilLanguageDropdown from "./MobilLanguageDropdown";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,19 +31,17 @@ export default function Header() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 mt-5 mb-5  ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500   mb-10  ${
           scrolled
             ? "bg-slate-900/95 backdrop-blur-md shadow-lg shadow-cyan-500/10"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 ">
           <div className="flex justify-between items-center h-16">
-            <div>
-              <KYLogo8 width={400} height={100} />
-            </div>
+            <KYLogo8 className=" logo_ky w-50 h-20" />
 
-            <div className=" my-container hidden md:flex items-center space-x-1">
+            <div className=" my-container hidden md:flex items-center space-x-2 ">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -57,8 +56,8 @@ export default function Header() {
                     }`}
                   >
                     <div className="flex items-center space-x-2">
-                      <Icon className="w-4 h-4" />
-                      <span className="font-medium">{t[item.id]}</span>
+                      <Icon className="w-6 h-6" />
+                      <span className="font-medium ">{t[item.id]}</span>
                     </div>
 
                     {activeSection === item.id && (
@@ -69,11 +68,13 @@ export default function Header() {
                   </NavLink>
                 );
               })}
-              <Themes />
             </div>
-
-            {/* Mobile Toggle Button */}
-            <button
+            <div className="flex gap-5">
+              <Themes />
+              <LanguageDropdown />
+            </div>
+            {/* Mobile */}
+            <NavLink
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden relative w-10 h-10 rounded-lg bg-slate-800/50 backdrop-blur-sm flex items-center justify-center hover:bg-slate-700/50 transition-colors duration-300"
             >
@@ -89,24 +90,22 @@ export default function Header() {
                   }`}
                 />
               </div>
-            </button>
-
-            <LanguageDropdown />
+            </NavLink>
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
-            isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+            isOpen ? "max-h-[500px] opacity-200" : "max-h-10 opacity-0"
           }`}
         >
-          <div className="px-4 pt-2 pb-4 space-y-2 bg-slate-900/95 backdrop-blur-md">
-            {navItems.map((item, index) => {
+          <div className="px-4 pt-2 pb-4 space-y-2 bg-slate-900/95 backdrop-blur-md w-full">
+            {navItems.map((item) => {
               const Icon = item.icon;
               return (
-                <button
+                <NavLink
                   key={item.id}
+                  to={item.to}
                   onClick={() => {
                     setActiveSection(item.id);
                     setIsOpen(false);
@@ -116,38 +115,18 @@ export default function Header() {
                       ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 shadow-lg shadow-cyan-500/20"
                       : "text-slate-300 hover:bg-slate-800/50 hover:text-white"
                   }`}
-                  style={{
-                    animationDelay: `${index * 50}ms`,
-                    animation: isOpen
-                      ? "slideIn 0.3s ease-out forwards"
-                      : "none",
-                  }}
                 >
                   <Icon className="w-5 h-5" />
-                  <span className="font-medium">{item.label}</span>
-                </button>
+                  <span className="font-medium">{t[item.id]}</span>
+                </NavLink>
               );
             })}
-            <LanguageDropdown />
+
+            <div className="">
+              <MobilLanguageDropdown />
+            </div>
           </div>
         </div>
-
-        {/* Animations */}
-        <style>{`
-        @keyframes slideIn {
-          from { opacity: 0; transform: translateX(-20px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        .animate-fadeIn { animation: fadeIn 1s ease-out; }
-      `}</style>
       </nav>
     </>
   );

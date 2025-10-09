@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "./LanguageContext";
 
 export default function LanguageDropdown() {
@@ -12,10 +12,23 @@ export default function LanguageDropdown() {
     { code: "en", label: "Er", flag: "/flags/english.png" },
   ];
 
-  const activeLang = langs.find((l) => l.code === language);
+  useEffect(() => {
+    const savedLang = localStorage.getItem("language");
+    if (savedLang) {
+      setLanguage(savedLang);
+    }
+  }, [setLanguage]);
+
+  const handleSelect = (code) => {
+    setLanguage(code);
+    localStorage.setItem("language", code);
+    setOpen(false);
+  };
+
+  const activeLang = langs.find((l) => l.code === language) || langs[0];
 
   return (
-    <div className="relative">
+    <div className="relative md:block hidden">
       {/* Tanlangan til */}
       <button
         onClick={() => setOpen(!open)}
@@ -31,11 +44,10 @@ export default function LanguageDropdown() {
           {langs.map((lang) => (
             <button
               key={lang.code}
-              onClick={() => {
-                setLanguage(lang.code);
-                setOpen(false);
-              }}
-              className="flex items-center gap-2 px-4 py-2 w-full hover:bg-gray-800"
+              onClick={() => handleSelect(lang.code)}
+              className={`flex items-center gap-2 px-4 py-2 w-full hover:bg-gray-800 ${
+                lang.code === language ? "bg-gray-800" : ""
+              }`}
             >
               <img src={lang.flag} alt={lang.label} className="w-5 h-5" />
               {lang.label}
