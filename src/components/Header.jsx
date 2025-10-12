@@ -33,7 +33,7 @@ export default function Header() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500   mb-10  ${
           scrolled
-            ? "bg-slate-900/95 backdrop-blur-md shadow-lg shadow-cyan-500/10"
+            ? "bg-slate-900/95  shadow-lg shadow-cyan-500/10 h-18 "
             : "bg-transparent"
         }`}
       >
@@ -50,14 +50,14 @@ export default function Header() {
                     onClick={() => setActiveSection(item.id)}
                     to={item.to}
                     className={`relative px-4 py-2 rounded-lg transition-all duration-300 group ${
-                      activeSection === item.id
-                        ? "text-cyan-400"
-                        : "text-slate-300 hover:text-white"
+                      activeSection === item.id ? "text-cyan-400" : " "
                     }`}
                   >
                     <div className="flex items-center space-x-2">
                       <Icon className="w-6 h-6" />
-                      <span className="font-medium ">{t[item.id]}</span>
+                      <span className="font-medium  text-gray-400">
+                        {t[item.id]}
+                      </span>
                     </div>
 
                     {activeSection === item.id && (
@@ -117,7 +117,9 @@ export default function Header() {
                   }`}
                 >
                   <Icon className="w-5 h-5" />
-                  <span className="font-medium">{t[item.id]}</span>
+                  <span className="font-medium text-zinc-500">
+                    {t[item.id]}
+                  </span>
                 </NavLink>
               );
             })}

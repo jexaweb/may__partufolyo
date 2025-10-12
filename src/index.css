@@ -21,9 +21,15 @@ body {
   height: 100%;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+main {
+  min-height: 100vh;
+}
 ol,
 ul {
   list-style: none;
+}
+img {
+  object-fit: cover;
 }
 a {
   text-decoration: none;
@@ -36,23 +42,21 @@ a {
   color: white;
   transition: color 0.3s;
 }
-.bgimg {
-  /* position: fixed; */
 
-  z-index: 1;
+@media (max-w-768) {
+  .gfre {
+    padding-top: 500px;
+  }
 }
-.bg-img {
-  position: absolute;
-  top: -1rem;
-  right: 1rem;
-  z-index: -1;
-}
-
-@media (max-width: 868px) {
-}
-@media (max-width: 450px) {
-  .logo_ky {
-    width: 150px;
-    height: 50px;
+@keyframes showcontent {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
   }
 }
