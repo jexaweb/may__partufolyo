@@ -40,11 +40,11 @@ export default function Home() {
           <div className="w-full md:w-1/2 flex justify-center items-end relative">
             {/* Decorative background image (absolute, responsive, clipped & rounded) */}
             <div className="absolute inset-x-0 bottom-0 flex justify-center pointer-events-none">
-              <div className="overflow-hidden rounded-2xl w-[90vw] max-w-[900px] sm:w-[400px]  lg:w-[1000px]  h-[490px] md:h-[420px] md:w-[500px]  lg:h-[640px] ">
+              <div className=" overflow-hidden rounded-2xl w-[90vw] max-w-[900px] sm:w-[400px]  lg:w-[1000px]  h-[420px] md:h-[420px] md:w-[500px]  lg:h-[640px] ">
                 <img
                   src="/flags/bg-logo.png"
                   alt="Decorative background"
-                  className="w-full h-full object-cover object-bottom pb-15 z-100 gfre"
+                  className="  bg-ilse w-full h-full object-cover object-bottom pb-15 z-100 gfre   "
                 />
               </div>
             </div>
@@ -89,14 +89,14 @@ export default function Home() {
 
         {/* Main Content */}
         <div className="container mx-auto px-8 py-16 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-start max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-start max-w-7xl mx-auto ">
             {/* Left Side - Images */}
             <div className="space-y-8">
               <div className="relative">
                 <img
                   src="../flags/mi-about.jpg"
                   alt="Profile"
-                  className="w-full max-w-[450px] h-[420px] object-cover rounded-3xl shadow-2xl"
+                  className="w-full max-w-[450px] h-[420px] object-cover rounded-3xl shadow-2xl "
                 />
               </div>
               <div className="relative ml-auto">
