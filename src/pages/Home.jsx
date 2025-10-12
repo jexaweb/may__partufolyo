@@ -53,7 +53,7 @@ export default function Home() {
             <div className="relative z-10 w-[330px] md:w-[300px] lg:w-[420px]  left-2">
               <div className="rounded-xl overflow-hidden p-2 md:p-4 flex justify-center items-center bg-transparent  ">
                 <img
-                  src="/flags/mi.png"
+                  src="/public/mi.png"
                   alt="Product"
                   className="w-full h-auto object-contain "
                 />
