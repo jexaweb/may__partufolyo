@@ -8,7 +8,7 @@ const translations = {
     welcome: "Salom",
     description: "Men KAMOLIDDIN YURSUNOV",
     tile: "Men zamonaviy, moslashuvchan va yuqori sifatli veb-saytlar yaratadigan tajribali Front-End dasturchiman.",
-    aboutme: "MEN HAQIMDA",
+    aboutme: "O'ZIM HAQIMDA",
     hello:
       "Hammaga salom! Mening ismim Kamoliddin Yursunov, men frontend dasturchiman. Janubiy Koreyadagi Yongin Universitetini tamomlab, veb texnologiyalar va zamonaviy foydalanuvchi interfeysi dizayni bo‘yicha mustahkam bilimga ega bo‘ldim. O‘zbekistonga qaytgach, Najot Ta’limda frontend dasturlashni o‘rganib, ko‘nikmalarimni yanada rivojlantirdim.",
     prect:

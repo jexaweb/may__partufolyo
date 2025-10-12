@@ -33,7 +33,7 @@ export default function Header() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500   mb-10  ${
           scrolled
-            ? "bg-slate-900/95  shadow-lg shadow-cyan-500/10 h-18 "
+            ? "bg-slate-900/95  shadow-lg shadow-cyan-500/10 h-17 "
             : "bg-transparent"
         }`}
       >

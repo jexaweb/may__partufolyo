@@ -42,6 +42,7 @@ const images = [
 export default function Slider() {
   const [slideItems, setSlideItems] = useState(images);
   const [bgImage, setBgImage] = useState(images[0].src);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
 
   const nextSlide = () => {
     setSlideItems((prev) => {
@@ -72,25 +73,33 @@ export default function Slider() {
       }, 150);
     };
 
-    window.addEventListener("wheel", handleWheel);
-    return () => window.removeEventListener("wheel", handleWheel);
-  }, []);
+    const updateScreen = () => setIsDesktop(window.innerWidth > 768);
+
+    updateScreen(); // bosida tekshiramiz
+    window.addEventListener("resize", updateScreen);
+
+    if (isDesktop) window.addEventListener("wheel", handleWheel);
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("resize", updateScreen);
+    };
+  }, [isDesktop]); // ekranni qayta tekshiradi
 
   const current = slideItems[0];
 
   return (
     <div
-      className="relative w-full min-h-230 flex items-center justify-center  overflow-hidden  bg-black "
+      className="relative w-full min-h-220 flex items-center justify-center overflow-hidden bg-black"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      {/* 🔥 Background Blur Layer */}
       <div
         key={bgImage}
-        className="absolute inset-0 bg-cover  transition-all duration-700 ease-in-out scale-110 brightness-[0.5] mb[500px]"
+        className="absolute inset-0 bg-cover transition-all duration-700 ease-in-out scale-110 brightness-[0.5]"
         style={{ backgroundImage: `url(${bgImage})` }}
       ></div>
 
-      {/* 🔥 Overlay Text (rasm ichida) */}
+      {/* 🔥 Text Overlay */}
       <div className="absolute bottom-0 left-0 w-full z-20 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 md:p-6 text-white text-center md:text-left">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 tracking-wide drop-shadow-lg animate-fadein">
           {current.name}
@@ -108,7 +117,7 @@ export default function Slider() {
         {slideItems.map((img, index) => (
           <div
             key={img.id}
-            className={`absolute inline-block bg-cover  rounded-[20px] overflow-hidden shadow-[0_25px_40px_rgba(0,0,0,0.5)] transition-all duration-700 ease-in-out ${
+            className={`absolute inline-block bg-cover rounded-[20px] overflow-hidden shadow-[0_25px_40px_rgba(0,0,0,0.5)] transition-all duration-700 ease-in-out ${
               index === 0
                 ? "left 1/2 -translate-x-1/2 top-0 w-[280px] h-[180px] sm:w-[400px] sm:h-[260px] md:w-[600px] md:h-[400px] z-[5] lg:left-60"
                 : index === 1
@@ -122,6 +131,22 @@ export default function Slider() {
             style={{ backgroundImage: `url(${img.src})` }}
           ></div>
         ))}
+      </div>
+
+      {/* 🔥 Mobile Buttons */}
+      <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-40 sm:hidden z-30">
+        <button
+          onClick={prevSlide}
+          className="px-4 py-2 bg-white/80 text-black font-semibold rounded-full shadow-md hover:bg-white"
+        >
+          ◀ Prev
+        </button>
+        <button
+          onClick={nextSlide}
+          className="px-4 py-2 bg-white/80 text-black font-semibold rounded-full shadow-md hover:bg-white"
+        >
+          Next ▶
+        </button>
       </div>
     </div>
   );
